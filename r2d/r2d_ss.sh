@@ -41,7 +41,7 @@ cat > /etc/shadowsocks.json<<-EOF
   "server":"${serverip}",
   "server_port":${serverport},
   "local_address":"127.0.0.1",
-  "local_port":1081,
+  "local_port":1080,
   "password":"${shadowsockspwd}",
   "timeout":600,
   "method":"${method}"
@@ -55,7 +55,7 @@ cp -f ./shadowsocks_miwifi/dnsmasq_list.conf /etc/dnsmasq.d/dnsmasq_list.conf
 #config firewall
 cp -f /etc/firewall.user /etc/firewall.user.back
 echo "ipset -N gfwlist iphash -! " >> /etc/firewall.user
-echo "iptables -t nat -A PREROUTING -p tcp -m set --match-set gfwlist dst -j REDIRECT --to-port 1081" >> /etc/firewall.user
+echo "iptables -t nat -A PREROUTING -p tcp -m set --match-set gfwlist dst -j REDIRECT --to-port 1080" >> /etc/firewall.user
 
 #restart all service
 /etc/init.d/dnsmasq restart
